@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
+#include "ConstructorHelpers.h"
 #include "TheHomeOfMyDreamCharacter.generated.h"
 
 class UInputComponent;
@@ -23,9 +24,11 @@ class ATheHomeOfMyDreamCharacter : public ACharacter
 
 public:
 	ATheHomeOfMyDreamCharacter();
-
+	
 protected:
 	virtual void BeginPlay();
+
+	
 
 public:
 	/** Base turn rate, in deg/sec. Other scaling may affect final turn rate. */

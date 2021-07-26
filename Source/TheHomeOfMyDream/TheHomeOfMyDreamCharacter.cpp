@@ -7,6 +7,7 @@
 #include "Components/InputComponent.h"
 #include "GameFramework/InputSettings.h"
 #include "Kismet/GameplayStatics.h"
+#include "Engine/Engine.h"
 
 DEFINE_LOG_CATEGORY_STATIC(LogFPChar, Warning, All);
 
@@ -51,6 +52,8 @@ void ATheHomeOfMyDreamCharacter::SetupPlayerInputComponent(class UInputComponent
 {
 	// set up gameplay key bindings
 	check(PlayerInputComponent);
+
+
 
 	// Bind jump events
 	PlayerInputComponent->BindAction("Jump", IE_Pressed, this, &ACharacter::Jump);
@@ -99,3 +102,4 @@ void ATheHomeOfMyDreamCharacter::LookUpAtRate(float Rate)
 	// calculate delta for this frame from the rate information
 	AddControllerPitchInput(Rate * BaseLookUpRate * GetWorld()->GetDeltaSeconds());
 }
+
