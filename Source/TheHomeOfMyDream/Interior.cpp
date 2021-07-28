@@ -21,8 +21,8 @@ AInterior::AInterior()
 		MeshInterior->AttachToComponent(Root, FAttachmentTransformRules::SnapToTargetNotIncludingScale);
 
 	
-	if (InteriorInfo.Mesh) 	GEngine->AddOnScreenDebugMessage(INDEX_NONE, 12.f, FColor::Cyan, TEXT("mesh"));
-	else GEngine->AddOnScreenDebugMessage(INDEX_NONE, 12.f, FColor::Cyan, TEXT("no mesh"));
+	//if (InteriorInfo.Mesh) 	GEngine->AddOnScreenDebugMessage(INDEX_NONE, 12.f, FColor::Cyan, TEXT("mesh"));
+	//else GEngine->AddOnScreenDebugMessage(INDEX_NONE, 12.f, FColor::Cyan, TEXT("no mesh"));
 
 
 }

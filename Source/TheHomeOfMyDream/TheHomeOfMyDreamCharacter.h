@@ -5,6 +5,7 @@
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
 #include "ConstructorHelpers.h"
+#include "Interior.h"
 #include "TheHomeOfMyDreamCharacter.generated.h"
 
 class UInputComponent;
@@ -25,10 +26,25 @@ class ATheHomeOfMyDreamCharacter : public ACharacter
 public:
 	ATheHomeOfMyDreamCharacter();
 	
+	UFUNCTION(BlueprintCallable)
+	void OpenInteriorMode(FInteriorInfo FurnitureMonitor);
+
+	UFUNCTION(BlueprintCallable)
+	void CloseInteriorMode();
+
 protected:
 	virtual void BeginPlay();
 
-	
+	//virtual void Tick(float DeltaTime) override;
+
+	UPROPERTY(BlueprintReadOnly, Category = "Building")
+	bool BuildingMode = false;
+
+	UPROPERTY(BlueprintReadOnly, Category = "Building")
+	FInteriorInfo FurnitureMonitor;
+
+	UPROPERTY(BlueprintReadOnly, Category = "Building")
+	UStaticMeshComponent* FurnitureMonitorComponent;
 
 public:
 	/** Base turn rate, in deg/sec. Other scaling may affect final turn rate. */
@@ -48,7 +64,7 @@ protected:
 	void TurnAtRate(float Rate);
 
 	void LookUpAtRate(float Rate);
-	
+		
 protected:
 	virtual void SetupPlayerInputComponent(UInputComponent* InputComponent) override;
 

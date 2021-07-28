@@ -11,11 +11,15 @@
 
 DEFINE_LOG_CATEGORY_STATIC(LogFPChar, Warning, All);
 
+#define g(x) GEngine->AddOnScreenDebugMessage(INDEX_NONE, 12.f, FColor::Cyan, x);
+
 //////////////////////////////////////////////////////////////////////////
 // ATheHomeOfMyDreamCharacter
 
 ATheHomeOfMyDreamCharacter::ATheHomeOfMyDreamCharacter()
 {
+	PrimaryActorTick.bCanEverTick = true;
+
 	// Set size for collision capsule
 	GetCapsuleComponent()->InitCapsuleSize(55.f, 96.0f);
 
@@ -37,6 +41,32 @@ ATheHomeOfMyDreamCharacter::ATheHomeOfMyDreamCharacter()
 	Mesh1P->CastShadow = false;
 	Mesh1P->RelativeRotation = FRotator(1.9f, -19.19f, 5.2f);
 	Mesh1P->RelativeLocation = FVector(-0.5f, -4.4f, -155.7f);
+
+	FurnitureMonitorComponent = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("FurnitureMonitor"));
+	FurnitureMonitorComponent->SetVisibility(false);
+}
+
+void ATheHomeOfMyDreamCharacter::OpenInteriorMode(FInteriorInfo FurnitureMonitor)
+{
+	BuildingMode = true;
+
+	this->FurnitureMonitor = FurnitureMonitor;
+
+	FurnitureMonitorComponent->SetStaticMesh(FurnitureMonitor.Mesh);
+	FurnitureMonitorComponent->SetVisibility(true);
+
+	if (FurnitureMonitor.Mesh)
+	g(TEXT("ok"));
+
+}
+
+void ATheHomeOfMyDreamCharacter::CloseInteriorMode()
+{
+	BuildingMode = false;
+
+	this->FurnitureMonitor = FInteriorInfo();
+	
+	FurnitureMonitorComponent->SetVisibility(false);
 }
 
 void ATheHomeOfMyDreamCharacter::BeginPlay()
